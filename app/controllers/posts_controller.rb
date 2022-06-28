@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def index
@@ -12,6 +13,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    params["post"]["category_ids"].shift
+    # puts params
     post = Post.create(post_params)
     redirect_to post
   end
